@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body,
+html {
+  cursor: none;
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 
+    0 0 6px #a29bfe,
+    0 0 12px #5f27cd,
+    0 0 24px #7506a9;
+
+  }
+  50% {
+    box-shadow: 
+    0 0 3px #c000a3,
+    0 0 16px #ff00c8,
+    0 0 20px #ff00ff;
+
+  }
+  100% {
+    box-shadow: 
+    0 0 6px #a29bfe,
+    0 0 12px #5f27cd,
+    0 0 24px #7506a9;
+
+  }
+}
+
+.glowing-border {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  animation: glow 3s infinite ease-in-out;
+}
+/* 
+.glowing-border {
+  position: relative;
+  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.glowing-border::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    #f81d83,
+    #f84b11,
+    #a29bfe,
+    #6c5ce7,
+    #f81d83
+  );
+  animation: rotate-glow 3s linear infinite;
+  filter: blur(20px);
+  z-index: -1;
+}
+
+@keyframes rotate-glow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} */
