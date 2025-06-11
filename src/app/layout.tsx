@@ -39,7 +39,7 @@ export default function RootLayout({
     
     <html lang="en">
       <body>
-        
+        <CustomCursor />
         {children}
       </body>
     </html>

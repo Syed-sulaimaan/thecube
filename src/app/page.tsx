@@ -1,15 +1,11 @@
 import Image from "next/image";
 import DraggableCube from "./Cube";
-import CustomCursor from "./CustomCursor";
-
-// import "./styles.css"; // we'll create this file for styles
 
 export default function Home() {
 
   return (
     
     <div className="flex flex-col items-center align-middle justify-items-center min-h-screen px-4 sm:px-8 font-[family-name:var(--font-geist-sans)] text-white bg-black text-center">
-      <CustomCursor />
       <Image
         className="z-10"
         src="/Logo.png"
