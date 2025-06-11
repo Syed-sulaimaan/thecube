@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: "The Cube Studio",
     images: [
       {
-        url: "/TheCubeicon.png",
+        url: "https://thecube-one.vercel.app/Logo.png",
         alt: "The Cube Studio",
         width: 1200,
         height: 630,
