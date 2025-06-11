@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The Cube Studio",
     description: "The Cube Studio - Your all in one marketing studio",
-    url: "https://thecubestudio.com",
+    url: "https://thecube-one.vercel.app",
     siteName: "The Cube Studio",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Cube Studio",
     description: "The Cube Studio - Your all in one marketing studio",
-    images: ["https://thecubestudio.in/Logo.png"],
+    images: ["https://thecube-one.vercel.app/Logo.png"],
   },
 };
 
