@@ -1,52 +1,71 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
 
 const NUM_TRAILS = 8;
 
 const CustomCursorTrail = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const trailRefs = useRef<HTMLDivElement[]>([]);
+  const mouse = useRef({ x: 0, y: 0 });
+  const positions = useRef(
+    Array(NUM_TRAILS + 1)
+      .fill(0)
+      .map(() => ({ x: 0, y: 0 }))
+  );
+  const animFrame = useRef<number>(0);
 
-  // Initialize trail refs
+  // Initialize mouse and positions on client
   useEffect(() => {
-    trailRefs.current = trailRefs.current.slice(0, NUM_TRAILS);
+    const startX = window.innerWidth / 2;
+    const startY = window.innerHeight / 2;
+    mouse.current = { x: startX, y: startY };
+    positions.current = Array(NUM_TRAILS + 1)
+      .fill(0)
+      .map(() => ({ x: startX, y: startY }));
   }, []);
 
   useEffect(() => {
-    const cursor = cursorRef.current;
-    const trails = trailRefs.current;
-    const positions = Array(NUM_TRAILS).fill({ x: 0, y: 0 });
-
-    gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-    trails.forEach((trail) => gsap.set(trail, { xPercent: -50, yPercent: -50 }));
-
-    const moveCursor = (e: MouseEvent) => {
-      positions.unshift({ x: e.clientX, y: e.clientY });
-      positions.pop();
-
-      // Move main cursor
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.2,
-        ease: "power2.out",
-      });
-
-      // Move trails
-      trails.forEach((trail, i) => {
-        gsap.to(trail, {
-          x: positions[i].x,
-          y: positions[i].y,
-          duration: 0.2 + i * 0.05,
-          ease: "power2.out",
-          opacity: 1 - i / NUM_TRAILS,
-        });
-      });
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.current.x = e.clientX;
+      mouse.current.y = e.clientY;
     };
 
-    window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
+    window.addEventListener("mousemove", handleMouseMove);
+
+    let lastTime = performance.now();
+
+    const animate = (now: number) => {
+      const dt = Math.min((now - lastTime) / 16.67, 2);
+      lastTime = now;
+
+      positions.current[0].x += (mouse.current.x - positions.current[0].x) * 0.25 * dt;
+      positions.current[0].y += (mouse.current.y - positions.current[0].y) * 0.25 * dt;
+
+      for (let i = 1; i < positions.current.length; i++) {
+        positions.current[i].x += (positions.current[i - 1].x - positions.current[i].x) * 0.35 * dt;
+        positions.current[i].y += (positions.current[i - 1].y - positions.current[i].y) * 0.35 * dt;
+      }
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${positions.current[0].x}px, ${positions.current[0].y}px, 0)`;
+      }
+
+      trailRefs.current.forEach((trail, i) => {
+        if (trail) {
+          trail.style.transform = `translate3d(${positions.current[i + 1].x}px, ${positions.current[i + 1].y}px, 0)`;
+          trail.style.opacity = `${1 - i / (NUM_TRAILS + 1)}`;
+        }
+      });
+
+      animFrame.current = requestAnimationFrame(animate);
+    };
+
+    animFrame.current = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (animFrame.current) cancelAnimationFrame(animFrame.current);
+    };
   }, []);
 
   return (
@@ -64,6 +83,8 @@ const CustomCursorTrail = () => {
           backgroundColor: "white",
           pointerEvents: "none",
           zIndex: 9999,
+          transform: "translate3d(-50%, -50%, 0)",
+          transition: "background 0.2s",
         }}
       />
       {Array(NUM_TRAILS)
@@ -87,6 +108,8 @@ const CustomCursorTrail = () => {
               pointerEvents: "none",
               zIndex: 9998,
               filter: "blur(2px)",
+              transform: "translate3d(-50%, -50%, 0)",
+              transition: "background 0.2s",
             }}
           />
         ))}

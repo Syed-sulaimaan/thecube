@@ -3,15 +3,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "./CustomCursor";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: "The Cube Studio",
@@ -47,11 +38,8 @@ export default function RootLayout({
   return (
     
     <html lang="en">
-      
-      <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <CustomCursor />
+      <body>
+        
         {children}
       </body>
     </html>

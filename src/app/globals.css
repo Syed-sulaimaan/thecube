@@ -6,11 +6,6 @@
   --background: #000000;
 }
 
-body,
-html {
-  cursor: none;
-}
-
 
 @theme inline {
   --color-background: var(--background);
@@ -19,12 +14,6 @@ html {
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
@@ -57,10 +46,17 @@ body {
 }
 
 .glowing-border {
+  position: relative;;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.05);
   animation: glow 3s infinite ease-in-out;
 }
+
+.glowing-border, .spantxt {
+  padding: 0.25rem 0.5rem;
+
+}
+
 /* 
 .glowing-border {
   position: relative;
