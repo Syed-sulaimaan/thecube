@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 
+
+
 const NUM_TRAILS = 8;
 
 const CustomCursorTrail = () => {

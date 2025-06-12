@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     
-    <div className="flex flex-col items-center align-middle justify-items-center min-h-screen px-4 sm:px-8 font-[family-name:var(--font-geist-sans)] text-white bg-black text-center">
+    <div className="flex flex-col items-center gap-8 align-middle justify-center min-h-screen px-4 sm:px-8 font-[family-name:var(--font-geist-sans)] text-white bg-black text-center">
       <Image
         className="z-10"
         src="/Logo.png"
@@ -18,13 +18,13 @@ export default function Home() {
           <span className="spantxt opacity-75 text-sm">Website under construction. Greatness takes time.</span>
       </div>
       
-      <div className="relative top-6 flex flex-col gap-2 mt-6 mb-4 text-gray-400">
-        <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight">
+      <div className="relative flex flex-col items-center justify-center gap-2 text-gray-400">
+        <span className="text-3xl font-thin tracking-tight">
           Where creativity meets clarity.
-        </h1>
-        <h2 className="relative text-7xl sm:text-7xl text-gray-300">
+        </span>
+        <span className="text-xl sm:text-2xl font-bold text-gray-300">
           Design. Strategy. Impact.
-        </h2>
+        </span>
         <div className="flex items-center gap-1 text-gray-400">
             <span>Contact:</span>
             <span className="text-sm sm:text-base">info@thecubestudio.in</span>
@@ -32,10 +32,12 @@ export default function Home() {
       </div>
 
 
-      <DraggableCube />
-      <DraggableCube />
-      <DraggableCube />
-      <DraggableCube />
+      <div className="mt-4">
+        <DraggableCube />
+        <DraggableCube />
+        <DraggableCube />
+        <DraggableCube />
+      </div>
     </div>
   );
 }

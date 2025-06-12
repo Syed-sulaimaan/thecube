@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "./CustomCursor";
+import ClientCursor from "./components/ClientCursor";
 
 
 export const metadata: Metadata = {
@@ -36,11 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    
     <html lang="en">
       <body>
-        <CustomCursor />
         {children}
+        <ClientCursor />
       </body>
     </html>
   );
