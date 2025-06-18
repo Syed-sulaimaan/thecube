@@ -20,7 +20,10 @@ export default function Home() {
       
       <div className="relative flex flex-col items-center justify-center gap-2 text-gray-400">
         <span className="text-3xl font-thin tracking-tight">
-          Where creativity meets clarity.
+        Where Brands Are Built to Last.
+        </span>
+        <span className="text-3xl font-thin tracking-tight">
+        Not Just Designed.
         </span>
         <span className="text-xl sm:text-2xl font-bold text-gray-300">
           Design. Strategy. Impact.

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --font-geist-sans: poppins, sans-serif;
   --background: #000000;
 }
 
